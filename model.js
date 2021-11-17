@@ -21,7 +21,7 @@ async function loadModel() {
   //   false
   // );
   const model = await tf.loadLayersModel(
-    "file:///home/manfred/Projects/week3-ml-movielens/model/model.json",
+    `file://${__dirname}/model/model.json`,
     false
   );
   console.log("Model Loaded Successfull");

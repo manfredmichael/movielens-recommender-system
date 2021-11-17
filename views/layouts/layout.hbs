@@ -64,7 +64,11 @@
             {{#if forUser}}
             <div class="col-md-12">
               <h4 class="text-info text-center">
+                {{#if modelLoaded}}
                 Here are you recommended movies!
+                {{else}}
+                Model is not loaded yet!
+                {{/if}}
               </h4>
               <hr />
             </div>

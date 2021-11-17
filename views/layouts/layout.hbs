@@ -63,14 +63,9 @@
           <div class="row">
             {{#if forUser}}
             <div class="col-md-12">
-              {{#if modelLoaded}}
               <h4 class="text-info text-center">
                 Here are you recommended movies!
               </h4>
-              {{else}}
-              <h4 class="text-info text-center">Model is not loaded yet!</h4>
-              {{/if}}
-              <hr />
             </div>
             {{#each recommendations}}
             <div class="col-md-4 card">

@@ -59,5 +59,5 @@ exports.recommend = async function recommend(userId) {
     }
   }
   console.log("returned");
-  return recommendations;
+  return recommendations, modelLoaded;
 };

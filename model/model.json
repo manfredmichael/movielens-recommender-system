@@ -8,7 +8,7 @@
     "model_config": {
       "class_name": "Model",
       "config": {
-        "name": "model_2",
+        "name": "model_7",
         "layers": [
           {
             "class_name": "InputLayer",
@@ -17,9 +17,9 @@
               "dtype": "float32",
               "sparse": false,
               "ragged": false,
-              "name": "input_5"
+              "name": "input_25"
             },
-            "name": "input_5",
+            "name": "input_25",
             "inbound_nodes": []
           },
           {
@@ -29,20 +29,20 @@
               "dtype": "float32",
               "sparse": false,
               "ragged": false,
-              "name": "input_6"
+              "name": "input_26"
             },
-            "name": "input_6",
+            "name": "input_26",
             "inbound_nodes": []
           },
           {
             "class_name": "Embedding",
             "config": {
-              "name": "embedding_4",
+              "name": "embedding_24",
               "trainable": true,
               "batch_input_shape": [null, null],
               "dtype": "float32",
               "input_dim": 1683,
-              "output_dim": 50,
+              "output_dim": 128,
               "embeddings_initializer": {
                 "class_name": "RandomUniform",
                 "config": { "minval": -0.05, "maxval": 0.05, "seed": null }
@@ -53,18 +53,18 @@
               "mask_zero": false,
               "input_length": null
             },
-            "name": "embedding_4",
-            "inbound_nodes": [[["input_5", 0, 0, {}]]]
+            "name": "embedding_24",
+            "inbound_nodes": [[["input_25", 0, 0, {}]]]
           },
           {
             "class_name": "Embedding",
             "config": {
-              "name": "embedding_5",
+              "name": "embedding_25",
               "trainable": true,
               "batch_input_shape": [null, null],
               "dtype": "float32",
               "input_dim": 944,
-              "output_dim": 50,
+              "output_dim": 128,
               "embeddings_initializer": {
                 "class_name": "RandomUniform",
                 "config": { "minval": -0.05, "maxval": 0.05, "seed": null }
@@ -75,85 +75,21 @@
               "mask_zero": false,
               "input_length": null
             },
-            "name": "embedding_5",
-            "inbound_nodes": [[["input_6", 0, 0, {}]]]
+            "name": "embedding_25",
+            "inbound_nodes": [[["input_26", 0, 0, {}]]]
           },
           {
             "class_name": "Dropout",
             "config": {
-              "name": "dropout_6",
+              "name": "dropout_8",
               "trainable": true,
               "dtype": "float32",
-              "rate": 0.4,
+              "rate": 0.3,
               "noise_shape": null,
               "seed": null
             },
-            "name": "dropout_6",
-            "inbound_nodes": [[["embedding_4", 0, 0, {}]]]
-          },
-          {
-            "class_name": "Dropout",
-            "config": {
-              "name": "dropout_7",
-              "trainable": true,
-              "dtype": "float32",
-              "rate": 0.4,
-              "noise_shape": null,
-              "seed": null
-            },
-            "name": "dropout_7",
-            "inbound_nodes": [[["embedding_5", 0, 0, {}]]]
-          },
-          {
-            "class_name": "Dot",
-            "config": {
-              "name": "dot_2",
-              "trainable": true,
-              "dtype": "float32",
-              "axes": 1,
-              "normalize": false
-            },
-            "name": "dot_2",
-            "inbound_nodes": [
-              [
-                ["dropout_6", 0, 0, {}],
-                ["dropout_7", 0, 0, {}]
-              ]
-            ]
-          },
-          {
-            "class_name": "Flatten",
-            "config": {
-              "name": "flatten_1",
-              "trainable": true,
-              "dtype": "float32",
-              "data_format": "channels_last"
-            },
-            "name": "flatten_1",
-            "inbound_nodes": [[["dot_2", 0, 0, {}]]]
-          },
-          {
-            "class_name": "Dense",
-            "config": {
-              "name": "dense_4",
-              "trainable": true,
-              "dtype": "float32",
-              "units": 96,
-              "activation": "relu",
-              "use_bias": true,
-              "kernel_initializer": {
-                "class_name": "GlorotUniform",
-                "config": { "seed": null }
-              },
-              "bias_initializer": { "class_name": "Zeros", "config": {} },
-              "kernel_regularizer": null,
-              "bias_regularizer": null,
-              "activity_regularizer": null,
-              "kernel_constraint": null,
-              "bias_constraint": null
-            },
-            "name": "dense_4",
-            "inbound_nodes": [[["flatten_1", 0, 0, {}]]]
+            "name": "dropout_8",
+            "inbound_nodes": [[["embedding_24", 0, 0, {}]]]
           },
           {
             "class_name": "Dropout",
@@ -161,21 +97,49 @@
               "name": "dropout_9",
               "trainable": true,
               "dtype": "float32",
-              "rate": 0.4,
+              "rate": 0.3,
               "noise_shape": null,
               "seed": null
             },
             "name": "dropout_9",
-            "inbound_nodes": [[["dense_4", 0, 0, {}]]]
+            "inbound_nodes": [[["embedding_25", 0, 0, {}]]]
+          },
+          {
+            "class_name": "Dot",
+            "config": {
+              "name": "dot_11",
+              "trainable": true,
+              "dtype": "float32",
+              "axes": 1,
+              "normalize": false
+            },
+            "name": "dot_11",
+            "inbound_nodes": [
+              [
+                ["dropout_8", 0, 0, {}],
+                ["dropout_9", 0, 0, {}]
+              ]
+            ]
+          },
+          {
+            "class_name": "Flatten",
+            "config": {
+              "name": "flatten_19",
+              "trainable": true,
+              "dtype": "float32",
+              "data_format": "channels_last"
+            },
+            "name": "flatten_19",
+            "inbound_nodes": [[["dot_11", 0, 0, {}]]]
           },
           {
             "class_name": "Dense",
             "config": {
-              "name": "dense_5",
+              "name": "dense_7",
               "trainable": true,
               "dtype": "float32",
               "units": 1,
-              "activation": "relu",
+              "activation": "linear",
               "use_bias": true,
               "kernel_initializer": {
                 "class_name": "GlorotUniform",
@@ -188,15 +152,15 @@
               "kernel_constraint": null,
               "bias_constraint": null
             },
-            "name": "dense_5",
-            "inbound_nodes": [[["dropout_9", 0, 0, {}]]]
+            "name": "dense_7",
+            "inbound_nodes": [[["flatten_19", 0, 0, {}]]]
           }
         ],
         "input_layers": [
-          ["input_5", 0, 0],
-          ["input_6", 0, 0]
+          ["input_25", 0, 0],
+          ["input_26", 0, 0]
         ],
-        "output_layers": [["dense_5", 0, 0]]
+        "output_layers": [["dense_7", 0, 0]]
       }
     },
     "training_config": {
@@ -205,15 +169,13 @@
       "weighted_metrics": null,
       "loss_weights": null,
       "optimizer_config": {
-        "class_name": "Adam",
+        "class_name": "Adagrad",
         "config": {
-          "name": "Adam",
-          "learning_rate": 0.0010000000474974513,
+          "name": "Adagrad",
+          "learning_rate": 0.10000000149011612,
           "decay": 0.0,
-          "beta_1": 0.8999999761581421,
-          "beta_2": 0.9990000128746033,
-          "epsilon": 1e-7,
-          "amsgrad": false
+          "initial_accumulator_value": 0.1,
+          "epsilon": 1e-7
         }
       }
     }
@@ -222,18 +184,16 @@
     {
       "paths": ["group1-shard1of1.bin"],
       "weights": [
-        { "name": "dense_4/kernel", "shape": [2500, 96], "dtype": "float32" },
-        { "name": "dense_4/bias", "shape": [96], "dtype": "float32" },
-        { "name": "dense_5/kernel", "shape": [96, 1], "dtype": "float32" },
-        { "name": "dense_5/bias", "shape": [1], "dtype": "float32" },
+        { "name": "dense_7/kernel", "shape": [16384, 1], "dtype": "float32" },
+        { "name": "dense_7/bias", "shape": [1], "dtype": "float32" },
         {
-          "name": "embedding_4/embeddings",
-          "shape": [1683, 50],
+          "name": "embedding_24/embeddings",
+          "shape": [1683, 128],
           "dtype": "float32"
         },
         {
-          "name": "embedding_5/embeddings",
-          "shape": [944, 50],
+          "name": "embedding_25/embeddings",
+          "shape": [944, 128],
           "dtype": "float32"
         }
       ]
